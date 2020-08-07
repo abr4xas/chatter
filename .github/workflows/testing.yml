@@ -66,11 +66,10 @@ jobs:
                   touch database/database.sqlite
                   php artisan migrate --verbose
                   php artisan db:seed --class=ChatterTableSeeder
-                  vendor/bin/phpunit vendor/abr4xas/chatter
 
             -   name: Execute tests
                 working-directory: ./chatter-app
-                run: vendor/bin/phpunit vendor/abr4xas/chatter
+                run: vendor/bin/phpunit packages/abr4xas/chatter
 
             -   name: Upload artifacts
                 uses: actions/upload-artifact@master
