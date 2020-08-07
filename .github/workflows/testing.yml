@@ -63,8 +63,8 @@ jobs:
                 run: vendor/bin/phpunit vendor/abr4xas/chatter
 
             -   name: Upload artifacts
-                working-directory: ./chatter-app
                 uses: actions/upload-artifact@master
+                working-directory: ./chatter-app
                 if: failure()
                 with:
                     name: Logs
