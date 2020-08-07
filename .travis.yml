@@ -40,12 +40,13 @@ before_script:
   - composer require abr4xas/chatter dev-master
   - composer require graham-campbell/markdown
   - composer require laravel/ui
+  - composer update
 
   # Remove the current version
-  - rm -rf vendor/devdojo/chatter
+  - rm -rf vendor/abr4xas/chatter
 
   # Move this build into the chatter folder
-  - mv /home/travis/build/abr4xas/chatter /home/travis/build/abr4xas/chatter-app/vendor/devdojo/chatter
+  - mv /home/travis/build/abr4xas/chatter /home/travis/build/abr4xas/chatter-app/vendor/abr4xas/chatter
 
   # Move up one folder and rename chatter-app to chatter
   - cd ../
