@@ -80,7 +80,7 @@ jobs:
                 run: |
                   php artisan migrate --verbose
                   php artisan db:seed --class=ChatterTableSeeder
-									vendor/bin/phpunit packages/abr4xas/chatter
+                  vendor/bin/phpunit packages/abr4xas/chatter
 
             -   name: Upload artifacts
                 uses: actions/upload-artifact@master
