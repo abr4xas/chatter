@@ -26,12 +26,12 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"DevDojo\\Chatter\\": "/src"
+			"DevDojo\\Chatter\\": "src"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"DevDojo\\Chatter\\Tests\\": "tests/"
+			"DevDojo\\Chatter\\Tests\\": "tests"
 		}
 	},
 	"extra": {
