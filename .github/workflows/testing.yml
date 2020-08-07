@@ -20,21 +20,26 @@ jobs:
         name: P ${{ matrix.php }} - L ${{ matrix.laravel }} - ${{ matrix.dependency-version }}
 
         steps:
+            -   name: Install chatter-app app
+                run:  composer create-project --prefer-dist laravel/laravel chatter-app "${{ matrix.laravel }}"
+
             -   name: Checkout code
-                uses: actions/checkout@v1
+                uses: actions/checkout@v2
 
             -   name: Setup PHP
-                uses: shivammathur/setup-php@v1
+                uses: shivammathur/setup-php@v2
                 with:
                     php-version: ${{ matrix.php }}
                     extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
 
             -   name: Install dependencies
+                working-directory: ./chatter-app
                 run: |
-                    composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
+                    composer require "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
                     composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
 
             -   name: Prepare Laravel Application
+                working-directory: ./chatter-app
                 run: |
                     cp .env.example .env
                     php artisan key:generate
@@ -42,6 +47,7 @@ jobs:
                     php artisan vendor:publish --all
 
             -   name: Prepare Laravel Database
+                working-directory: ./chatter-app
                 env:
                   APP_ENV: testing
                   DB_CONNECTION: sqlite
@@ -53,9 +59,11 @@ jobs:
                   vendor/bin/phpunit vendor/abr4xas/chatter
 
             -   name: Execute tests
+                working-directory: ./chatter-app
                 run: vendor/bin/phpunit vendor/abr4xas/chatter
 
             -   name: Upload artifacts
+                working-directory: ./chatter-app
                 uses: actions/upload-artifact@master
                 if: failure()
                 with:
