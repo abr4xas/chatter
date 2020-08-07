@@ -34,10 +34,11 @@ jobs:
                     composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "abr4xas/chatter:dev-master" graham-campbell/markdown laravel/ui --no-interaction --no-update
                     composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
             -   name: Prepare Laravel Application
-                run: cp .env.example .env
-                run: php artisan key:generate
-                run: php artisan ui bootstrap --auth
-                run: php artisan vendor:publish --all
+                run: |
+                    cp .env.example .env
+                    php artisan key:generate
+                    php artisan ui bootstrap --auth
+                    php artisan vendor:publish --all
             -   name: Prepare Laravel Database
                 env:
                   APP_ENV: testing
