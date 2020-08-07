@@ -1,6 +1,8 @@
 <?php
 
-class ExampleTest extends \Tests\TestCase
+namespace DevDojo\Chatter\Tests;
+
+class ExampleTest extends TestCase
 {
     /**
      * A basic functional test example.
@@ -12,6 +14,6 @@ class ExampleTest extends \Tests\TestCase
 
 		$response = $this->get('/forums');
 
-		$response->assertSee('New Discussion');
+		$response->assertSee('New Discussion', 'YOLO');
     }
 }

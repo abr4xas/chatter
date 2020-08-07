@@ -1,6 +1,7 @@
 <?php
 
-class RoutesTest extends \Tests\TestCase
+namespace DevDojo\Chatter\Tests;
+class RoutesTest extends TestCase
 {
     /**
      * A basic functional test example.
@@ -18,6 +19,13 @@ class RoutesTest extends \Tests\TestCase
         foreach ($urls as $url) {
             $response = $this->call('GET', $url);
             $this->assertEquals(200, $response->status(), $url.' did not return a 200');
-        }
-    }
+		}
+	}
+
+
+	public function testExpectBarActualBaz()
+	{
+		$this->expectOutputString('bar');
+		print 'baz';
+	}
 }
