@@ -1,6 +1,6 @@
 <?php
 
-class RoutesTest extends TestCase
+class RoutesTest extends \Tests\TestCase
 {
     /**
      * A basic functional test example.

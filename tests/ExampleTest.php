@@ -1,6 +1,6 @@
 <?php
 
-class ExampleTest extends TestCase
+class ExampleTest extends \Tests\TestCase
 {
     /**
      * A basic functional test example.
@@ -9,7 +9,9 @@ class ExampleTest extends TestCase
      */
     public function testBasicExample()
     {
-        $this->visit('/')->see('Laravel');
-        $this->visit('/forums')->see('New Discussion');
+
+		$response = $this->get('/forums');
+
+		$response->assertSee('New Discussion');
     }
 }

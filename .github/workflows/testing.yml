@@ -1,0 +1,66 @@
+name: Test
+
+on: [push]
+
+jobs:
+    test:
+
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                php: [7.4]
+                laravel: [7.*]
+                dependency-version: [prefer-stable]
+                include:
+                    -   laravel: 7.*
+                        testbench: 5.*
+
+        name: P ${{ matrix.php }} - L ${{ matrix.laravel }} - ${{ matrix.dependency-version }}
+
+        steps:
+            -   name: Checkout code
+                uses: actions/checkout@v1
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v1
+                with:
+                    php-version: ${{ matrix.php }}
+                    extensions: mbstring, intl, pdo, pdo_sqlite, sqlite
+
+            -   name: Install dependencies
+                run: |
+                    composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
+					composer require "abr4xas/chatter:dev-master" graham-campbell/markdown laravel/ui --no-interaction --no-update
+                    composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
+
+			-   name: Prepare Laravel Application
+				run: |
+					cp .env.example .env
+					php artisan key:generate
+					php artisan ui bootstrap --auth
+					php artisan vendor:publish --all
+
+			-   name: Prepare Laravel Database
+				env:
+					APP_ENV: testing
+					DB_CONNECTION: mysql
+					DB_NAME: our-awesome-tested-app
+					DB_PASSWORD:
+					DB_USER: root
+
+			-   name: Execute migrations
+                run: |
+					php artisan migrate --verbose
+					php artisan db:seed --class=ChatterTableSeeder
+					vendor/bin/phpunit vendor/abr4xas/chatter
+
+			-   name: Execute tests
+                run: vendor/bin/phpunit vendor/abr4xas/chatter
+
+			-   name: Upload artifacts
+				uses: actions/upload-artifact@master
+				if: failure()
+				with:
+					name: Logs
+					path: ./storage/logs
