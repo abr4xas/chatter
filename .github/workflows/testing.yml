@@ -56,10 +56,3 @@ jobs:
 
             -   name: Execute tests
                 run: vendor/bin/phpunit vendor/abr4xas/chatter
-
-            -   name: Upload artifacts
-                uses: actions/upload-artifact@master
-                if: failure()
-                with:
-                name: Logs
-                path: ./storage/logs
