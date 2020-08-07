@@ -71,7 +71,7 @@ before_script:
 
   # Install chatter
   - php artisan ui bootstrap --auth
-  - php artisan vendor:publish
+  - php artisan vendor:publish --all
   - composer dump-autoload
   - php artisan migrate --verbose
   - php artisan db:seed --class=ChatterTableSeeder
