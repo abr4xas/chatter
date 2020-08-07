@@ -33,25 +33,30 @@ jobs:
                 run: |
                     composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "abr4xas/chatter:dev-master" graham-campbell/markdown laravel/ui --no-interaction --no-update
                     composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
+
             -   name: Prepare Laravel Application
                 run: |
                     cp .env.example .env
                     php artisan key:generate
                     php artisan ui bootstrap --auth
                     php artisan vendor:publish --all
+
             -   name: Prepare Laravel Database
                 env:
                   APP_ENV: testing
                   DB_CONNECTION: sqlite
                   DB_DATABASE: database/database.sqlite
+
             -   name: Execute migrations
                 run: |
                   touch database/database.sqlite
                   php artisan migrate --verbose
                   php artisan db:seed --class=ChatterTableSeeder
                   vendor/bin/phpunit vendor/abr4xas/chatter
+
             -   name: Execute tests
                 run: vendor/bin/phpunit vendor/abr4xas/chatter
+
             -   name: Upload artifacts
                 uses: actions/upload-artifact@master
                 if: failure()
