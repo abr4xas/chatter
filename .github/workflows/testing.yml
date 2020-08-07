@@ -46,8 +46,6 @@ jobs:
                   APP_ENV: testing
                   DB_CONNECTION: sqlite
                   DB_DATABASE: database/database.sqlite
-
-            -   name: Execute migrations
                 run: |
                   touch database/database.sqlite
                   php artisan migrate --verbose
@@ -56,3 +54,10 @@ jobs:
 
             -   name: Execute tests
                 run: vendor/bin/phpunit vendor/abr4xas/chatter
+
+            -   name: Upload artifacts
+                uses: actions/upload-artifact@master
+                if: failure()
+                with:
+                    name: Logs
+                    path: ./storage/logs
