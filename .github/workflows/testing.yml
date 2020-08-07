@@ -42,7 +42,7 @@ jobs:
 
             -   name: Add composer.json repository
                 working-directory: ./chatter-app
-                run: composer config repositories.chatter path "/home/runner/work/chatter/chatter/host/packages/abr4xas/chatter"
+                run: composer config repositories.chatter path "/home/runner/work/chatter/chatter/chatter-app/packages/abr4xas/chatter"
 
             -   name: Require the package
                 working-directory: ./chatter-app
