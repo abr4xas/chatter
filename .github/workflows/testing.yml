@@ -64,7 +64,6 @@ jobs:
 
             -   name: Upload artifacts
                 uses: actions/upload-artifact@master
-                working-directory: ./chatter-app
                 if: failure()
                 with:
                     name: Logs
