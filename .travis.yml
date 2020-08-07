@@ -31,7 +31,7 @@ before_script:
   - cd ../
 
   # Create a New Laravel App
-  - composer create-project --prefer-dist laravel/laravel chatter-app "7.*"
+  - composer create-project --prefer-dist laravel/laravel chatter-app "7.22.*"
 
   # CD into the new laravel app
   - cd chatter-app
@@ -77,7 +77,7 @@ before_script:
 
   # Remove the default phpunit.xml and replace it with chatter phpunit.xml
   - rm phpunit.xml
-  - cp vendor/devdojo/chatter/phpunit.xml phpunit.xml
+  - cp vendor/abr4xas/chatter/phpunit.xml phpunit.xml
 
 
 script:
