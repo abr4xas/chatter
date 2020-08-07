@@ -20,12 +20,13 @@ jobs:
         name: P ${{ matrix.php }} - L ${{ matrix.laravel }} - ${{ matrix.dependency-version }}
 
         steps:
-            -   name: Install chatter-app app
+            -   name: Install chatter-app
                 run:  composer create-project --prefer-dist laravel/laravel chatter-app "${{ matrix.laravel }}"
 
             -   name: Checkout code
-                working-directory: ./chatter-app
                 uses: actions/checkout@v2
+                with:
+                  path: chatter-app/packages/abr4xas/chatter
 
             -   name: Setup PHP
                 uses: shivammathur/setup-php@v2
@@ -38,6 +39,14 @@ jobs:
                 run: |
                     composer require "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
                     composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
+
+            -   name: Add composer.json repository
+                working-directory: ./chatter-app
+                run: composer config repositories.chatter path "/home/runner/work/chatter/chatter/host/packages/abr4xas/chatter"
+
+            -   name: Require the package
+                working-directory: ./chatter-app
+                run: composer require abr4xas/chatter @dev
 
             -   name: Prepare Laravel Application
                 working-directory: ./chatter-app
