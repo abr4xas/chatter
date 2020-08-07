@@ -31,7 +31,7 @@ before_script:
   - cd ../
 
   # Create a New Laravel App
-  - composer create-project --prefer-dist laravel/laravel chatter-app "7.22.*"
+  - composer create-project --prefer-dist laravel/laravel chatter-app "7.*"
 
   # CD into the new laravel app
   - cd chatter-app
