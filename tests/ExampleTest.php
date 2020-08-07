@@ -2,6 +2,8 @@
 
 namespace DevDojo\Chatter\Tests;
 
+use DevDojo\Chatter\Tests\TestCase;
+
 class ExampleTest extends TestCase
 {
     /**
