@@ -24,6 +24,7 @@ jobs:
                 run:  composer create-project --prefer-dist laravel/laravel chatter-app "${{ matrix.laravel }}"
 
             -   name: Checkout code
+                working-directory: ./chatter-app
                 uses: actions/checkout@v2
 
             -   name: Setup PHP
