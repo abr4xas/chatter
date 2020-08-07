@@ -11,7 +11,7 @@ jobs:
             matrix:
                 php: [7.4]
                 laravel: [7.*]
-                dependency-version: [prefer-lowest, prefer-stable]
+                dependency-version: [prefer-stable]
                 include:
                     -   laravel: 7.*
                         testbench: 5.*
@@ -27,11 +27,11 @@ jobs:
                 uses: shivammathur/setup-php@v1
                 with:
                     php-version: ${{ matrix.php }}
-                    extensions: mbstring, intl, pdo, pdo_sqlite, sqlite
+                    extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
 
             -   name: Install dependencies
                 run: |
-                    composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "abr4xas/chatter:dev-master" graham-campbell/markdown laravel/ui --no-interaction --no-update
+                    composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
                     composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
 
             -   name: Prepare Laravel Application

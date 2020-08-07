@@ -16,7 +16,9 @@
 	],
 	"license": "MIT",
     "require": {
-        "mews/purifier": "~3.0"
+        "mews/purifier": "~3.0",
+        "graham-campbell/markdown": "^13.0",
+        "laravel/ui": "^2.1"
     },
     "require-dev": {
         "mockery/mockery": "^1.4",
