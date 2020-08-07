@@ -37,10 +37,7 @@ before_script:
   - cd chatter-app
 
   # Include Chatter Package & Markdown package
-  - composer require abr4xas/chatter dev-master
-  - composer require graham-campbell/markdown
-  - composer require laravel/ui
-  - composer update
+  - composer require abr4xas/chatter dev-master graham-campbell/markdown laravel/ui
 
   # Remove the current version
   - rm -rf vendor/abr4xas/chatter
@@ -52,19 +49,14 @@ before_script:
   - cd ../
   - mv chatter-app chatter
   - cd chatter
-  - composer dump-autoload
+  - composer dump-autoload -o
 
   # Add the database credentials
-  - sed 's/DB_DATABASE=homestead/DB_DATABASE=chatter/g' .env > environment
-  - sed 's/DB_USERNAME=homestead/DB_USERNAME=root/g' environment > .env
-  - sed 's/DB_PASSWORD=secret/DB_PASSWORD=/g' .env > environment
+  - sed 's/DB_DATABASE=laravel/DB_DATABASE=chatter/g' .env > environment
+  - sed 's/DB_USERNAME=root/DB_USERNAME=root/g' environment > .env
+  - sed 's/DB_PASSWORD=/DB_PASSWORD=/g' .env > environment
   - rm .env
   - mv environment .env
-
-  # Add the service providers
-  - sed 's/App\\Providers\\RouteServiceProvider\:\:class,/App\\Providers\\RouteServiceProvider\:\:class, DevDojo\\Chatter\\ChatterServiceProvider\:\:class,/g' config/app.php > config/app-temp.php
-  - rm config/app.php
-  - mv config/app-temp.php config/app.php
 
   # Temponary fix for testing with another charset
   - php -r "file_put_contents('config/database.php', str_replace('utf8mb4', 'utf8', file_get_contents('config/database.php')));"
