@@ -24,7 +24,7 @@ abstract class TestCase extends BaseTestCase
 	{
 		$app = require __DIR__ . '/../../../../bootstrap/app.php';
 
-		$app->make(\App\Console\Kernel::class)->bootstrap();
+		$app->make(\lluminate\Contracts\Console\Kernel::class)->bootstrap();
 
 		return $app;
 	}
