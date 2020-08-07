@@ -37,7 +37,7 @@ before_script:
   - cd chatter-app
 
   # Include Chatter Package & Markdown package
-  - composer require devdojo/chatter dev-master
+  - composer require abr4xas/chatter dev-master
   - composer require graham-campbell/markdown
   - composer require laravel/ui
 
