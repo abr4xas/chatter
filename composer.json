@@ -1,42 +1,47 @@
 {
-    "name": "abr4xas/chatter",
-    "description": "A simple forum package for your laravel app",
-    "authors": [
-        {
-            "name": "Tony Lea",
-            "email": "tony@devdojo.com",
-            "role": "Developer"
-        },
-        {
-            "name": "Angel Cruz",
-            "email": "bullgram@gmail.com",
-            "homepage": "https://angelcruz.dev",
-            "role": "Developer"
-        }
+	"name": "abr4xas/chatter",
+	"description": "A simple forum package for your laravel app",
+	"authors": [
+		{
+			"name": "Tony Lea",
+			"email": "tony@devdojo.com",
+			"role": "Developer"
+		},
+		{
+			"name": "Angel Cruz",
+			"email": "bullgram@gmail.com",
+			"homepage": "https://angelcruz.dev",
+			"role": "Developer"
+		}
 	],
 	"license": "MIT",
-    "require": {
-        "mews/purifier": "~3.0"
-    },
-    "require-dev": {
-        "mockery/mockery": "^1.4",
-        "phpunit/phpunit": "^9.2"
-    },
-    "autoload": {
-	    "psr-4": {
-	      "DevDojo\\Chatter\\": "/src"
+	"require": {
+		"mews/purifier": "~3.0",
+		"graham-campbell/markdown": "^13.0",
+		"laravel/ui": "^2.1"
+	},
+	"require-dev": {
+		"illuminate/console": "^7.24",
+		"orchestra/testbench": "^5.3",
+		"mockery/mockery": "^1.4",
+		"phpunit/phpunit": "^9.3",
+		"sempro/phpunit-pretty-print": "^1.2"
+	},
+	"autoload": {
+		"psr-4": {
+			"DevDojo\\Chatter\\": "src/"
 		}
 	},
-    "autoload-dev": {
-        "classmap": [
-            "tests/TestCase.php"
-        ]
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "DevDojo\\Chatter\\ChatterServiceProvider"
-            ]
-        }
-    }
+	"autoload-dev": {
+		"psr-4": {
+			"DevDojo\\Chatter\\Tests\\": "tests/"
+		}
+	},
+	"extra": {
+		"laravel": {
+			"providers": [
+				"DevDojo\\Chatter\\ChatterServiceProvider"
+			]
+		}
+	}
 }
