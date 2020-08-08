@@ -5,7 +5,6 @@ namespace DevDojo\Chatter\Requests;
 use DevDojo\Chatter\Exceptions\PostUpdateNotAllowedException;
 use DevDojo\Chatter\Models\Models;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Auth\Access\AuthorizationException;
 
 class ChatterUpdatePostRequest extends FormRequest
 {
@@ -21,7 +20,6 @@ class ChatterUpdatePostRequest extends FormRequest
         $post = Models::post()->with('discussion')->findOrFail($parameters['post']);
 
         return (! is_null($this->user())) && $this->user()->id === (int) $post->user_id;
-        
     }
     
     /**

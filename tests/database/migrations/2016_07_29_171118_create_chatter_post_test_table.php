@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateChatterPostTable extends Migration
+class CreateChatterPostTestTable extends Migration
 {
     public function up()
     {
@@ -13,10 +13,10 @@ class CreateChatterPostTable extends Migration
             $table->unsignedBigInteger('chatter_discussion_id');
             $table->unsignedBigInteger('user_id');
             $table->longText('body');
-			$table->boolean('markdown')->default(0);
-			$table->boolean('locked')->default(0);
+            $table->boolean('markdown')->default(0);
+            $table->boolean('locked')->default(0);
             $table->timestamps();
-			$table->softDeletes();
+            $table->softDeletes();
 
             $table->foreign('chatter_discussion_id')
                 ->references('id')

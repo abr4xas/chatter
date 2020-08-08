@@ -27,8 +27,7 @@ class PostUpdateNotAllowedException extends Exception
     {
         return redirect('/' . config('chatter.routes.home'))->with([
             'chatter_alert_type' => 'danger',
-            'chatter_alert'      => trans('chatter::alert.danger.reason.update_post'),
+            'chatter_alert' => trans('chatter::alert.danger.reason.update_post'),
         ]);
     }
-    
 }

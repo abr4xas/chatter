@@ -2,35 +2,35 @@
 
 return [
     'words' => [
-        'cancel'  => 'Cancelar',
-        'delete'  => 'Borrar',
-        'edit'    => 'Editar',
-        'yes'     => 'Si',
-        'no'      => 'No',
+        'cancel' => 'Cancelar',
+        'delete' => 'Borrar',
+        'edit' => 'Editar',
+        'yes' => 'Si',
+        'no' => 'No',
         'minutes' => '1 minuto| :count minutos',
     ],
 
     'discussion' => [
-        'new'          => 'Nueva '.mb_strtolower(trans('chatter::intro.titles.discussion')),
-        'all'          => 'Todas las '.mb_strtolower(trans('chatter::intro.titles.discussions')),
-        'create'       => 'Crear una '.mb_strtolower(trans('chatter::intro.titles.discussion')),
-        'posted_by'    => 'Publicado por',
+        'new' => 'Nueva '.mb_strtolower(trans('chatter::intro.titles.discussion')),
+        'all' => 'Todas las '.mb_strtolower(trans('chatter::intro.titles.discussions')),
+        'create' => 'Crear una '.mb_strtolower(trans('chatter::intro.titles.discussion')),
+        'posted_by' => 'Publicado por',
         'head_details' => 'Publicado en categoria',
 
     ],
     'response' => [
-        'confirm'     => '¿Estás seguro de que quieres borrar la respuesta?',
+        'confirm' => '¿Estás seguro de que quieres borrar la respuesta?',
         'yes_confirm' => 'Si, borrar',
-        'no_confirm'  => 'No gracias',
-        'submit'      => 'Enviar respuesta',
-        'update'      => 'Actualizar respuesta',
+        'no_confirm' => 'No gracias',
+        'submit' => 'Enviar respuesta',
+        'update' => 'Actualizar respuesta',
     ],
 
     'editor' => [
-        'title'               => 'Titulo de la '.mb_strtolower(trans('chatter::intro.titles.discussion')),
-        'select'              => 'Selecciona una categoria',
+        'title' => 'Titulo de la '.mb_strtolower(trans('chatter::intro.titles.discussion')),
+        'select' => 'Selecciona una categoria',
         'tinymce_placeholder' => 'Agrega el contenido para la '.mb_strtolower(trans('chatter::intro.titles.discussion')).' aquí...',
-        'select_color_text'   => 'Selecciona un color para la '.mb_strtolower(trans('chatter::intro.titles.discussion')).' (opcional)',
+        'select_color_text' => 'Selecciona un color para la '.mb_strtolower(trans('chatter::intro.titles.discussion')).' (opcional)',
     ],
 
     'email' => [

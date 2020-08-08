@@ -12,7 +12,7 @@ return [
     */
 
     'titles' => [
-        'discussion'  => 'Discussion',
+        'discussion' => 'Discussion',
         'discussions' => 'Discussions',
     ],
 
@@ -31,9 +31,7 @@ return [
     |
     */
 
-    'headline'      => 'Welcome to Chatter',
-    'description'   => 'A simple forum package for your Laravel app.',
+    'headline' => 'Welcome to Chatter',
+    'description' => 'A simple forum package for your Laravel app.',
 
 ];
-
-

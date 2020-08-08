@@ -2,35 +2,35 @@
 
 return [
     'words' => [
-        'cancel'  => 'Annuler',
-        'delete'  => 'Supprimer',
-        'edit'    => 'Modifier',
-        'yes'     => 'Oui',
-        'no'      => 'Non',
+        'cancel' => 'Annuler',
+        'delete' => 'Supprimer',
+        'edit' => 'Modifier',
+        'yes' => 'Oui',
+        'no' => 'Non',
         'minutes' => '1 minute| :count minutes',
     ],
 
     'discussion' => [
-        'new'          => 'Nouveau '.trans('chatter::intro.titles.discussion'),
-        'all'          => 'Tous les '.trans('chatter::intro.titles.discussions'),
-        'create'       => 'Créér '.trans('chatter::intro.titles.discussion'),
-        'posted_by'    => 'Par',
+        'new' => 'Nouveau '.trans('chatter::intro.titles.discussion'),
+        'all' => 'Tous les '.trans('chatter::intro.titles.discussions'),
+        'create' => 'Créér '.trans('chatter::intro.titles.discussion'),
+        'posted_by' => 'Par',
         'head_details' => 'Posté dans la Catégorie',
 
     ],
     'response' => [
-        'confirm'     => 'Êtes-vous sûr de vouloir supprimer cette réponse?',
+        'confirm' => 'Êtes-vous sûr de vouloir supprimer cette réponse?',
         'yes_confirm' => 'Oui le Supprimer',
-        'no_confirm'  => 'Non Merci',
-        'submit'      => 'Envoyer une réponse',
-        'update'      => 'Mise à jour',
+        'no_confirm' => 'Non Merci',
+        'submit' => 'Envoyer une réponse',
+        'update' => 'Mise à jour',
     ],
 
     'editor' => [
-        'title'               => 'Titre de '.trans('chatter::intro.titles.discussion'),
-        'select'              => 'Choisir une Catégorie',
+        'title' => 'Titre de '.trans('chatter::intro.titles.discussion'),
+        'select' => 'Choisir une Catégorie',
         'tinymce_placeholder' => 'Tapez votre '.trans('chatter::intro.titles.discussion').' Ici...',
-        'select_color_text'   => 'Choissisez une couleur pour ce '.trans('chatter::intro.titles.discussion').' (optionel)',
+        'select_color_text' => 'Choissisez une couleur pour ce '.trans('chatter::intro.titles.discussion').' (optionel)',
     ],
 
     'email' => [
