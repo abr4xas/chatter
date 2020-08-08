@@ -429,16 +429,16 @@
                 @endif
             });
 
-            $("#color").spectrum({
-                color: "#333639",
-                preferredFormat: "hex",
-                containerClassName: 'chatter-color-picker',
-                cancelText: '',
-                chooseText: 'close',
-                move: function(color) {
-                    $("#color").val(color.toHexString());
-                }
-            });
+            // $("#color").spectrum({
+            //     color: "#333639",
+            //     preferredFormat: "hex",
+            //     containerClassName: 'chatter-color-picker',
+            //     cancelText: '',
+            //     chooseText: 'close',
+            //     move: function(color) {
+            //         $("#color").val(color.toHexString());
+            //     }
+            // });
 
             @if (count($errors) > 0)
                 $('#new_discussion_in_discussion_view').slideDown();
