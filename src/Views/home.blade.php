@@ -64,7 +64,7 @@
             <div class="col-md-3 left-column">
                 <!-- SIDEBAR -->
                 <div class="chatter_sidebar">
-                    <button class="btn btn-primary new_discussion_button"><i class="chatter-new"></i> @lang('chatter::messages.discussion.new')</button>
+                    <button class="btn btn-primary new_discussion_btn"><i class="chatter-new"></i> @lang('chatter::messages.discussion.new')</button>
                     <a href="{{ route('chatter.home') }}"><i class="chatter-bubble"></i> @lang('chatter::messages.discussion.all')</a>
                     {!! $categoriesMenu !!}
                 </div>
@@ -221,16 +221,16 @@
             @endif
         });
 
-        $("#color").spectrum({
-            color: "#333639",
-            preferredFormat: "hex",
-            containerClassName: 'chatter-color-picker',
-            cancelText: '',
-            chooseText: 'close',
-            move: function(color) {
-                $("#color").val(color.toHexString());
-            }
-        });
+        // $("#color").spectrum({
+        //     color: "#333639",
+        //     preferredFormat: "hex",
+        //     containerClassName: 'chatter-color-picker',
+        //     cancelText: '',
+        //     chooseText: 'close',
+        //     move: function(color) {
+        //         $("#color").val(color.toHexString());
+        //     }
+        // });
 
         @if (count($errors) > 0)
             $('#new_discussion').slideDown();
