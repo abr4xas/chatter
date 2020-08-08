@@ -1,31 +1,27 @@
 <?php
 
+
 namespace DevDojo\Chatter\Tests;
 
+use DevDojo\Chatter\ChatterServiceProvider;
 
-use App\Console\Kernel;
-use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-
-abstract class TestCase extends BaseTestCase
+class TestCase extends \Orchestra\Testbench\TestCase
 {
-	/**
-	 * The base URL to use while testing the application.
-	 *
-	 * @var string
-	 */
-	// protected $baseUrl = 'http://localhost';
-
-	/**
-	 * Creates the application.
-	 *
-	 * @return \Illuminate\Foundation\Application
-	 */
-	public function createApplication()
+	public function setUp(): void
 	{
-		$app = require __DIR__ . '/../../../../bootstrap/app.php';
+		parent::setUp();
+		// additional setup
+	}
 
-		$app->make(\lluminate\Contracts\Console\Kernel::class)->bootstrap();
+	protected function getPackageProviders($app)
+	{
+		return [
+			ChatterServiceProvider::class,
+		];
+	}
 
-		return $app;
+	protected function getEnvironmentSetUp($app)
+	{
+		// perform environment setup
 	}
 }

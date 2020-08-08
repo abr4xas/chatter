@@ -21,18 +21,20 @@
 		"laravel/ui": "^2.1"
 	},
 	"require-dev": {
+		"illuminate/console": "^7.24",
+		"orchestra/testbench": "^5.3",
 		"mockery/mockery": "^1.4",
-		"phpunit/phpunit": "^9.2",
-		"illuminate/console": "^7.24"
+		"phpunit/phpunit": "^9.3",
+		"sempro/phpunit-pretty-print": "^1.2"
 	},
 	"autoload": {
 		"psr-4": {
-			"DevDojo\\Chatter\\": "src"
+			"DevDojo\\Chatter\\": "src/"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"DevDojo\\Chatter\\Tests\\": "tests"
+			"DevDojo\\Chatter\\Tests\\": "tests/"
 		}
 	},
 	"extra": {
