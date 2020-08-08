@@ -12,7 +12,7 @@ return [
     */
 
     'titles' => [
-        'discussion'  => 'Sujet',
+        'discussion' => 'Sujet',
         'discussions' => 'Sujets',
     ],
 
@@ -31,9 +31,7 @@ return [
     |
     */
 
-    'headline'      => 'Forum',
-    'description'   => 'Discutons du code, des bugs et de tout ce qui concerne le développement / design.',
+    'headline' => 'Forum',
+    'description' => 'Discutons du code, des bugs et de tout ce qui concerne le développement / design.',
 
 ];
-
-

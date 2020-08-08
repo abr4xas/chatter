@@ -5,7 +5,6 @@ namespace DevDojo\Chatter\Requests;
 use DevDojo\Chatter\Exceptions\PostDeleteNotAllowedException;
 use DevDojo\Chatter\Models\Models;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Auth\Access\AuthorizationException;
 
 class ChatterDeletePostRequest extends FormRequest
 {

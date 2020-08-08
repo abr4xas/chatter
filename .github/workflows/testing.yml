@@ -4,11 +4,9 @@ on:
   pull_request:
     branches:
       - master
-    types: [closed]
 
 jobs:
   test:
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     steps:
@@ -19,7 +17,7 @@ jobs:
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
 
       - name: Execute tests (Unit and Feature tests) via PHPUnit
-        run: vendor/bin/phpunit
+        run: composer test
 
       - name: Upload artifacts
         uses: actions/upload-artifact@master
