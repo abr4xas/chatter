@@ -3,89 +3,25 @@ name: Test
 on: [push]
 
 jobs:
-    test:
+  test:
+    runs-on: ubuntu-latest
 
-        runs-on: ubuntu-latest
-        strategy:
-            fail-fast: false
-            matrix:
-                php: [7.4]
-                laravel: [7.*]
-                dependency-version: [prefer-stable]
-                include:
-                    -   laravel: 7.*
-                        testbench: 5.*
+    steps:
 
+      - uses: actions/checkout@v2
 
-        name: P ${{ matrix.php }} - L ${{ matrix.laravel }} - ${{ matrix.dependency-version }}
+      - name: Install Dependencies (PHP vendors)
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
 
-        services:
-            mysql:
-                image: mysql:5.7
-                env:
-                    MYSQL_ALLOW_EMPTY_PASSWORD: yes
-                    MYSQL_DATABASE: our-awesome-tested-app
-                ports:
-                    - 3306
-                options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+      - name: Generate key
+        run: php artisan key:generate
 
+      - name: Execute tests (Unit and Feature tests) via PHPUnit
+        run: vendor/bin/phpunit
 
-        steps:
-            -   name: Install chatter-app
-                run:  composer create-project --prefer-dist laravel/laravel chatter-app "${{ matrix.laravel }}"
-
-            -   name: Checkout code
-                uses: actions/checkout@v2
-                with:
-                  path: chatter-app/packages/abr4xas/chatter
-
-            -   name: Setup PHP
-                uses: shivammathur/setup-php@v2
-                with:
-                    php-version: ${{ matrix.php }}
-                    extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
-
-            -   name: Install dependencies
-                working-directory: ./chatter-app
-                run: |
-                    composer require "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
-                    composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
-
-            -   name: Add composer.json repository
-                working-directory: ./chatter-app
-                run: composer config repositories.chatter path "/home/runner/work/chatter/chatter/chatter-app/packages/abr4xas/chatter"
-
-            -   name: Require the package
-                working-directory: ./chatter-app
-                run: composer require abr4xas/chatter @dev
-
-            -   name: Prepare Laravel Application
-                working-directory: ./chatter-app
-                run: |
-                    cp .env.example .env
-                    php artisan key:generate
-                    php artisan ui bootstrap --auth
-                    php artisan vendor:publish --all
-
-            -   name: Start mysql service
-                run: sudo /etc/init.d/mysql start
-
-            -   name: Execute tests
-                working-directory: ./chatter-app
-                env:
-                  APP_ENV: testing
-                  DB_DATABASE: our-awesome-tested-app
-                  DB_USERNAME: root
-                  DB_PORT: ${{ job.services.mysql.ports[3306] }}
-                run: |
-                  composer dump-autoload -o
-                  php artisan migrate --verbose
-                  php artisan db:seed --class=ChatterTableSeeder
-                  vendor/bin/phpunit packages/abr4xas/chatter
-
-            -   name: Upload artifacts
-                uses: actions/upload-artifact@master
-                if: failure()
-                with:
-                    name: Logs
-                    path: ./storage/logs
+      - name: Upload artifacts
+        uses: actions/upload-artifact@master
+        if: failure()
+        with:
+          name: Logs
+          path: ./storage/logs
