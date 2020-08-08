@@ -1,7 +1,7 @@
 name: Test
 
 on:
-  push:
+  pull_request:
     branches:
       - master
 
@@ -17,7 +17,7 @@ jobs:
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
 
       - name: Execute tests (Unit and Feature tests) via PHPUnit
-        run: vendor/bin/phpunit
+        run: composer test
 
       - name: Upload artifacts
         uses: actions/upload-artifact@master
