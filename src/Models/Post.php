@@ -2,8 +2,8 @@
 
 namespace DevDojo\Chatter\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use GrahamCampbell\Markdown\Facades\Markdown;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
@@ -35,7 +35,7 @@ class Post extends Model
         return $field;
     }
 
-	// @todo delete
+    // @todo delete
     public function toSearchableArray()
     {
         return $this->toArray();

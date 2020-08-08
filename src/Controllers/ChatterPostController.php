@@ -53,10 +53,10 @@ class ChatterPostController extends Controller
         $stripped_tags_body = ['body' => strip_tags($request->body)];
         $validator = Validator::make($stripped_tags_body, [
             'body' => 'required|min:10',
-        ],[
-			'body.required' => trans('chatter::alert.danger.reason.content_required'),
-			'body.min' => trans('chatter::alert.danger.reason.content_min'),
-		]);
+        ], [
+            'body.required' => trans('chatter::alert.danger.reason.content_required'),
+            'body.min' => trans('chatter::alert.danger.reason.content_min'),
+        ]);
 
         Event::dispatch(new ChatterBeforeNewResponse($request, $validator));
         if (function_exists('chatter_before_new_response')) {
@@ -86,7 +86,7 @@ class ChatterPostController extends Controller
                 $minutes = trans_choice('chatter::messages.words.minutes', config('chatter.security.time_between_posts'));
                 $chatter_alert = [
                     'chatter_alert_type' => 'danger',
-                    'chatter_alert'      => trans('chatter::alert.danger.reason.prevent_spam', [
+                    'chatter_alert' => trans('chatter::alert.danger.reason.prevent_spam', [
                                                 'minutes' => $minutes,
                                             ]),
                     ];
@@ -106,7 +106,7 @@ class ChatterPostController extends Controller
         $discussion = Models::discussion()->find($request->chatter_discussion_id);
 
         $category = Models::category()->find($discussion->chatter_category_id);
-        if (!isset($category->slug)) {
+        if (! isset($category->slug)) {
             $category = Models::category()->first();
         }
 
@@ -127,14 +127,14 @@ class ChatterPostController extends Controller
 
             $chatter_alert = [
                 'chatter_alert_type' => 'success',
-                'chatter_alert'      => trans('chatter::alert.success.reason.submitted_to_post'),
+                'chatter_alert' => trans('chatter::alert.success.reason.submitted_to_post'),
                 ];
 
             return redirect('/'.config('chatter.routes.home').'/'.config('chatter.routes.discussion').'/'.$category->slug.'/'.$discussion->slug)->with($chatter_alert);
         } else {
             $chatter_alert = [
                 'chatter_alert_type' => 'danger',
-                'chatter_alert'      => trans('chatter::alert.danger.reason.trouble'),
+                'chatter_alert' => trans('chatter::alert.danger.reason.trouble'),
                 ];
 
             return redirect('/'.config('chatter.routes.home').'/'.config('chatter.routes.discussion').'/'.$category->slug.'/'.$discussion->slug)->with($chatter_alert);
@@ -188,10 +188,10 @@ class ChatterPostController extends Controller
         $stripped_tags_body = ['body' => strip_tags($request->body)];
         $validator = Validator::make($stripped_tags_body, [
             'body' => 'required|min:10',
-        ],[
-			'body.required' => trans('chatter::alert.danger.reason.content_required'),
-			'body.min' => trans('chatter::alert.danger.reason.content_min'),
-		]);
+        ], [
+            'body.required' => trans('chatter::alert.danger.reason.content_required'),
+            'body.min' => trans('chatter::alert.danger.reason.content_min'),
+        ]);
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
@@ -209,13 +209,13 @@ class ChatterPostController extends Controller
         $discussion = Models::discussion()->find($post->chatter_discussion_id);
 
         $category = Models::category()->find($discussion->chatter_category_id);
-        if (!isset($category->slug)) {
+        if (! isset($category->slug)) {
             $category = Models::category()->first();
         }
 
         $chatter_alert = [
             'chatter_alert_type' => 'success',
-            'chatter_alert'      => trans('chatter::alert.success.reason.updated_post'),
+            'chatter_alert' => trans('chatter::alert.success.reason.updated_post'),
             ];
 
         return redirect('/'.config('chatter.routes.home').'/'.config('chatter.routes.discussion').'/'.$category->slug.'/'.$discussion->slug)->with($chatter_alert);
@@ -234,7 +234,7 @@ class ChatterPostController extends Controller
         $post = Models::post()->with('discussion')->findOrFail($id);
 
         if ($post->discussion->posts()->oldest()->first()->id === $post->id) {
-            if(config('chatter.soft_deletes')) {
+            if (config('chatter.soft_deletes')) {
                 $post->discussion->posts()->delete();
                 $post->discussion()->delete();
             } else {
@@ -244,7 +244,7 @@ class ChatterPostController extends Controller
 
             return redirect('/'.config('chatter.routes.home'))->with([
                 'chatter_alert_type' => 'success',
-                'chatter_alert'      => trans('chatter::alert.success.reason.destroy_post'),
+                'chatter_alert' => trans('chatter::alert.success.reason.destroy_post'),
             ]);
         }
 
@@ -254,7 +254,7 @@ class ChatterPostController extends Controller
 
         return redirect($url)->with([
             'chatter_alert_type' => 'success',
-            'chatter_alert'      => trans('chatter::alert.success.reason.destroy_from_discussion'),
+            'chatter_alert' => trans('chatter::alert.success.reason.destroy_from_discussion'),
         ]);
     }
 }

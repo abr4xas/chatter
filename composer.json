@@ -17,15 +17,17 @@
 	"license": "MIT",
 	"require": {
 		"mews/purifier": "~3.0",
-		"graham-campbell/markdown": "^13.0",
-		"laravel/ui": "^2.1"
+		"graham-campbell/markdown": "^13.0"
 	},
 	"require-dev": {
 		"illuminate/console": "^7.24",
 		"orchestra/testbench": "^5.3",
 		"mockery/mockery": "^1.4",
 		"phpunit/phpunit": "^9.3",
-		"sempro/phpunit-pretty-print": "^1.2"
+		"sempro/phpunit-pretty-print": "^1.2",
+		"psalm/plugin-laravel": "^1.2",
+		"vimeo/psalm": "^3.11",
+		"friendsofphp/php-cs-fixer": "^2.16"
 	},
 	"autoload": {
 		"psr-4": {
@@ -37,11 +39,22 @@
 			"DevDojo\\Chatter\\Tests\\": "tests/"
 		}
 	},
+	"scripts": {
+		"psalm": "vendor/bin/psalm",
+		"test": "vendor/bin/phpunit  --testdox",
+		"test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+		"format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+	},
+	"config": {
+		"sort-packages": true
+	},
 	"extra": {
 		"laravel": {
 			"providers": [
 				"DevDojo\\Chatter\\ChatterServiceProvider"
 			]
 		}
-	}
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true
 }

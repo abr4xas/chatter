@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateChatterDiscussionTable extends Migration
+class CreateChatterDiscussionTestTable extends Migration
 {
     public function up()
     {
@@ -15,12 +15,12 @@ class CreateChatterDiscussionTable extends Migration
             $table->unsignedBigInteger('user_id')->unsigned();
             $table->boolean('sticky')->default(false);
             $table->integer('views')->unsigned()->default('0');
-			$table->boolean('answered')->default(0);
-			$table->string('slug')->nullable();
-			$table->string('color', 20)->nullable()->default('#232629');
-			$table->timestamp('last_reply_at')->useCurrent();
+            $table->boolean('answered')->default(0);
+            $table->string('slug')->nullable();
+            $table->string('color', 20)->nullable()->default('#232629');
+            $table->timestamp('last_reply_at')->useCurrent();
             $table->timestamps();
-			$table->softDeletes();
+            $table->softDeletes();
 
             $table->foreign('chatter_category_id')
                 ->references('id')
